@@ -1,16 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-const SongItem = props => {
-    return (
+class SongItem extends React.Component {
+    constructor(){
+        super()
+        this.state = {
+          likeData: 0
+        }
+    }
+
+    addLike = () => {
+        this.setState ({likeData: this.state.likeData +1 })
+    }
+
+    addFavorite = (e) => {
+        console.log(this.props.id)
+
+    }
+  
+    render() {
+      
+    return ( 
         <tr>
-            <td>{props.title}</td>
-            <td>{props.artist}</td>
+            <td>{this.props.title}</td>
+            <td>{this.props.artist}</td>
             <td><button onClick={null /* Put your click handler here */}>Play Now</button></td>
             <td><button onClick={null /* Put your click handler here */}>Add to Queue</button></td>
-            <td onClick={null /* Put your click handler here */}>{props.favorite ? "💚" : "♡"}</td>
-            <td>Likes: 0</td>
+            <td onClick={this.addFavorite}>{this.props.favorite ? "💚" : "♡"}</td>
+            <td onClick={this.addLike}>Likes: {this.state.likeData}</td>
         </tr>
     )
+  }
 }
 
 export default SongItem;
